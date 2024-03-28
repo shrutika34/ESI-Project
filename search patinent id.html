@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Details Search</title>
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #70b6b9; 
+        }
+        .search-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .search-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .search-form input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .search-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 2px solid #000;
+    }
+    th, td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    </style>
+</head>
+<body>
+    <div class="search-form">
+        <h2>Search Patient Details</h2>
+        <form id="searchForm" onsubmit="searchPatient(); return false;">
+            <label for="patient ESIC id">Patient_ESIC_id</label>
+            <input type="text" id="patient ESIc id" name="Id" required>
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
+    <script>
+        function searchPatient() {
+            
+            var patientId = document.getElementById("patientId").value;          
+            
+            console.log("Searching for patient with ID: " + patientId);          
+        }
+    </script>
+    <br><br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>Patient ESIC ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Phone No</th>
+                <th>Doctor Consulted</th>
+                <th>Token ID</th>
+                <th>Prescription</th>
+                <th>Medicine sheet link</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>123456</td>
+                <td>John Doe</td>
+                <td>30</td>
+                <td>Male</td>
+                <td>123 Main St, City</td>
+                <td>123-456-7890</td>
+                <td>Dr. Smith</td>
+                <td>7890</td>
+                <td><input type="file" id="presciption Upload" name="image" accept="image/jpeg, image/png"></td>
+                <td><a href="https://docs.google.com/spreadsheets/d/14XX5auXVO1K8hcuZGRPN6Fmp0owP4hw2/edit?usp=sharing&ouid=112467739053595456105&rtpof=true&sd=true" target="_blank">Click here</a></td>
+            </tr>
+            
+</body>
+</html>

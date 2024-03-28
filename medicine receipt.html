@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Queue Management System</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #70b6b9; 
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        .checkboxes label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Pharmacy Queue Management System</h2>
+    <form action="submit.php" method="post">
+        <label for="esic_id">ESIC ID:</label>
+        <input type="text" id="esic_id" name="esic_id" required>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" required>
+
+        <label for="doctor">Doctor Consulted:</label>
+        <input type="text" id="doctor" name="doctor" required>
+
+        <label for="token_id">Token ID:</label>
+        <input type="text" id="token_id" name="token_id" required><br><br>
+
+        <table id="medicine_table">
+            <thead>
+                <tr>
+                    <th>Medicine</th>
+                    <th>Morning</th>
+                    <th>Afternoon</th>
+                    <th>Evening</th>
+                    <th>No. of Days</th>
+                    <th>No. of Strips/Bottles</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <select name="medicines[]" required>
+                            <option value="">Select</option>
+                            <option value="medicine1">Medicine 1</option>
+                            <option value="medicine2">Medicine 2</option>
+                            <option value="medicine3">Medicine 3</option>
+                            <!-- Add more medicines as needed -->
+                        </select>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="morning[]" value="morning_before_meal">Before Meal<br>
+                        <input type="checkbox" name="morning[]" value="morning_after_meal">After Meal
+                    </td>
+                    <td>
+                        <input type="checkbox" name="afternoon[]" value="afternoon_before_meal">Before Meal<br>
+                        <input type="checkbox" name="afternoon[]" value="afternoon_after_meal">After Meal
+                    </td>
+                    <td>
+                        <input type="checkbox" name="evening[]" value="evening_before_meal">Before Meal<br>
+                        <input type="checkbox" name="evening[]" value="evening_after_meal">After Meal
+                    </td>
+                    <td><input type="text" name="days[]" required></td>
+                    <td><input type="text" name="strips_bottles[]" required></td>
+                    <td><input type="text" name="prices[]" required></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="button" onclick="addMedicineRow()">Add Medicine</button>
+        <br><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function addMedicineRow() {
+            var table = document.getElementById('medicine_table').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.rows.length);
+            var cells = [];
+
+            cells.push(newRow.insertCell(0));
+            cells[0].innerHTML = '<select name="medicines[]" required>' +
+                '<option value="">Select</option>' +
+                '<option value="medicine1">Medicine 1</option>' +
+                '<option value="medicine2">Medicine 2</option>' +
+                '<option value="medicine3">Medicine 3</option>' +
+                '</select>';
+
+            cells.push(newRow.insertCell(1));
+            cells[1].innerHTML = '<input type="checkbox" name="morning[]" value="morning_before_meal">Before Meal' +
+                '<input type="checkbox" name="morning[]" value="morning_after_meal">After Meal';
+
+            cells.push(newRow.insertCell(2));
+            cells[2].innerHTML = '<input type="checkbox" name="afternoon[]" value="afternoon_before_meal">Before Meal' +
+                '<input type="checkbox" name="afternoon[]" value="afternoon_after_meal">After Meal';
+
+            cells.push(newRow.insertCell(3));
+            cells[3].innerHTML = '<input type="checkbox" name="evening[]" value="evening_before_meal">Before Meal' +
+                '<input type="checkbox" name="evening[]" value="evening_after_meal">After Meal';
+
+            cells.push(newRow.insertCell(4));
+            cells[4].innerHTML = '<input type="text" name="days[]" required>';
+
+            cells.push(newRow.insertCell(5));
+            cells[5].innerHTML = '<input type="text" name="strips_bottles[]" required>';
+
+            cells.push(newRow.insertCell(6));
+            cells[6].innerHTML = '<input type="text" name="prices[]" required>';
+        }
+    </script>
+</body>
+</html>
